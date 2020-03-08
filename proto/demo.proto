@@ -1,0 +1,27 @@
+syntax = "proto3";
+package demo.v1;
+option go_package = "grpc-demo/proto/v1;demopb";
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string result = 1;
+}
+
+service demoServices {
+    // unary RPC
+    rpc TryUnary (HelloRequest) returns (HelloResponse) {
+    };
+    // server streaming RPC
+    rpc TryServerStreaming (HelloRequest) returns (stream HelloResponse) {
+    };
+    // client streaming RPC
+    rpc TryClientStreaming (stream HelloRequest) returns (HelloResponse) {
+    };
+    // bidirectional streaming Rpc
+    rpc TryBidirectionalStreaming (stream HelloRequest) returns (stream HelloResponse) {
+    };
+}
+
